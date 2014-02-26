@@ -1,14 +1,65 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>Acroyoga Ottawa Community Timeline</title>
+<link href='fullcalendar/fullcalendar.css' rel='stylesheet' />
+<link href='fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='lib/jquery.min.js'></script>
+<script src='lib/jquery-ui.custom.min.js'></script>
+<script src='fullcalendar/fullcalendar.min.js'></script>
+<script src='fullcalendar/gcal.js'></script>
+<script>
+
+	$(document).ready(function() {
+	
+		$('#calendar').fullCalendar({
+		
+			// US Holidays
+			events: 'http://www.google.com/calendar/feeds/gho.st_19b0g4d2m46ta2l2gf8olt1k6o@group.calendar.google.com/public/basic',
+			
+			eventClick: function(event) {
+				// opens events in a popup window
+				window.open(event.url, 'gcalevent', 'width=700,height=600');
+				return false;
+			},
+			
+			loading: function(bool) {
+				if (bool) {
+					$('#loading').show();
+				}else{
+					$('#loading').hide();
+				}
+			}
+			
+		});
+		
+	});
+
+</script>
+<style>
+
+	body {
+		margin-top: 40px;
+		text-align: center;
+		font-size: 14px;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		}
+		
+	#loading {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		}
+
+	#calendar {
+		width: 900px;
+		margin: 0 auto;
+		}
+
+</style>
 </head>
 <body>
-
-<iframe src="https://www.google.com/calendar/embed?title=Acroyoga%20Ottawa%20Event%20Calendar&;amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=gho.st_19b0g4d2m46ta2l2gf8olt1k6o%40group.calendar.google.com&amp;color=%2328754E&amp;ctz=America%2FToronto" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
-
-<!-- 
-<iframe src='http://cdn.knightlab.com/libs/timeline/latest/embed/index.html?source=0Ar2n5pmP8vzAdFpodGxPV0VRT3N1bE85R1BSanFGQWc&font=Bevan-PotanoSans&maptype=toner&lang=en&height=650' width='100%' height='650' frameborder='0'></iframe>
--->
-  
+<h1>Acroyoga Ottawa Community Calendar</h1>
+<div id='loading' style='display:none'>loading...</div>
+<div id='calendar'></div>
 </body>
 </html>
