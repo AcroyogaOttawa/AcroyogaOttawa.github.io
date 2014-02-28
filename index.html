@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href='fullcalendar/fullcalendar.css' rel='stylesheet' />
-<link href='fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link href='js/fullcalendar.css' rel='stylesheet' />
+<link href='js/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src='lib/jquery.min.js'></script>
 <script src='lib/jquery-ui.custom.min.js'></script>
-<script src='fullcalendar/fullcalendar.min.js'></script>
-<script src='fullcalendar/gcal.js'></script>
+<script src='js/fullcalendar.min.js'></script>
+<script src='js/gcal.js'></script>
+<script type="text/javascript" src="js/instafeed.min.js"></script>
 <script>
 
 	$(document).ready(function() {
@@ -62,6 +63,14 @@
 		}
 
 </style>
+<script type="text/javascript">
+    var feed = new Instafeed({
+        get: 'tagged',
+        tagName: 'AcroyogaOttawa',
+        clientId: '4c0caa35855143e788ca790012daaa3b'
+    });
+    feed.run();
+</script>
 </head>
 <body>
 <h1>Acroyoga Ottawa Event Calendar</h1>
@@ -72,9 +81,8 @@
 <p>Acroyoga is acrobatics with a yogic consciousness, no experience is necessary to come and play. Jams are informal gatherings to play and practice. Classes develop your Acroyoga practice in a more formal settings. And Workshops are great for deepen your practice.
 Join our <a href="https://www.facebook.com/groups/AcroyogaOttawa/">Facebook group</a>, follow us on <a href="https://twitter.com/AcroyogaOttawa">Twitter</a> or start sharing #AcroyogaOttawa on Instagram or pinning inspiration to <a href="http://www.pinterest.com/gregology/acroyoga-ottawa/">Pintrest</a>. <a href="https://github.com/AcroyogaOttawa/AcroyogaOttawa.github.io">Fork</a> us on GitHub to setup a similar Calendar for your own Acroyoga Community.<br>
 To get access to post on this calendar please contact Greg (Greg@smileyom.org). Click <a href='http://www.google.com/calendar/ical/gho.st_19b0g4d2m46ta2l2gf8olt1k6o%40group.calendar.google.com/public/basic.ics'>here</a> to add this calendar to your device.</p></div>
-
-<!-- SnapWidget -->
-<iframe src="http://snapwidget.com/in/?h=YWNyb3lvZ2FvdHRhd2F8aW58MTI1fDZ8M3x8bm98NXxub25lfG9uU3RhcnR8eWVz&v=27214" title="Instagram Widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:780px; height:390px"></iframe>
+<h2>#AcroyogaOttawa Instagram Feed</h2>
+<div id="instafeed"></div>
 
 </body>
 </html>
