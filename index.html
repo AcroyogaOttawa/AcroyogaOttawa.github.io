@@ -7,18 +7,17 @@
 <script src='js/jquery-ui.custom.min.js'></script>
 <script src='js/fullcalendar.min.js'></script>
 <script src='js/gcal.js'></script>
-<script type="text/javascript" src="js/instafeed.min.js"></script>
+<script src="js/instafeed.min.js"></script>
+<script src='config.js'></script>
 <script>
 
 	$(document).ready(function() {
 	
 		$('#calendar').fullCalendar({
 		
-			// Acroyoga Ottawa Community Calendar
-			events: 'http://www.google.com/calendar/feeds/gho.st_19b0g4d2m46ta2l2gf8olt1k6o@group.calendar.google.com/public/basic',
+			events: 'http://www.google.com/calendar/feeds/' + google_calendar + '/public/basic',
 			
 			eventClick: function(event) {
-				// opens events in a popup window
 				window.open(event.url, 'gcalevent', 'width=700,height=600');
 				return false;
 			},
@@ -75,8 +74,8 @@
 <script type="text/javascript">
     var feed = new Instafeed({
         get: 'tagged',
-        tagName: 'AcroyogaOttawa',
-        clientId: '4c0caa35855143e788ca790012daaa3b',
+        tagName: instagram_hash_tag,
+        clientId: instagram_client_id,
         limit: 35,
         resolution: 'thumbnail'
     });
@@ -84,7 +83,7 @@
 </script>
 <script type="text/javascript">
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-47043442-2']);
+_gaq.push(['_setAccount', google_analytics]);
 _gaq.push(['_trackPageview']);
 (function() {
 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
@@ -94,15 +93,27 @@ ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'st
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 </script>
+
 </head>
 <body>
-<h1>Acroyoga Ottawa Event Calendar</h1>
-<h2>Acrobatics with a yogic consciousness in a beautiful city</h2>
+
+<h1 id="title">title</h1>
+<h2 id="tagline">tagline</h2>
+<script>
+    document.getElementById("title").innerHTML = title;
+    document.getElementById("tagline").innerHTML = tagline;
+</script>
+
 <div id='loading' style='display:none'>loading...</div>
+
 <div id='calendar'>
-	<div align="right"><a href='http://www.google.com/calendar/ical/gho.st_19b0g4d2m46ta2l2gf8olt1k6o%40group.calendar.google.com/public/basic.ics'>Add to your calendar</a> - <a href='http://chadnorwood.com/gcm/?gc=gho.st_19b0g4d2m46ta2l2gf8olt1k6o@group.calendar.google.com'>view as map</a>
-	</div>
+	<div id="calendar_options" align="right"></div>
 </div>
+<script>
+    document.getElementById("calendar_options").innerHTML = "<a href='http://www.google.com/calendar/ical/" + google_calendar + "/public/basic.ics'>Add to your calendar</a> - <a href='http://chadnorwood.com/gcm/?gc=" + google_calendar + "'>view as map</a>";
+</script>
+
+
 <div id='footer'>
 <h3>Definitions</h3>
 <p><b>Jams</b>: Informal gatherings to play and practice, no formal instruction or start time. Turn up whenever you want.<br>
@@ -111,14 +122,26 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <b>Performances</b>: Members of our community performing to the public.</p>
 
 <h3>Social</h3>
-<p><a href="https://www.facebook.com/groups/AcroyogaOttawa/">Facebook</a> - <a href="https://twitter.com/AcroyogaOttawa">Twitter</a> - <a href="http://www.pinterest.com/gregology/acroyoga-ottawa/">Pinterest</a></p>
+<p id="social_links">social links</p>
+<script>
+    document.getElementById("social_links").innerHTML = social_links;
+</script>
 
 <h3>References</h3>
 <p><a href="https://www.youtube.com/playlist?list=PLZdtKRrh2n7tmMYi6A9fkfk5Xw8SNMSHK">Yogabatics</a> - <a href="https://maps.google.com/maps/ms?ie=UTF8&oe=UTF8&msa=0&msid=214237272004176694934.0004e452a8e7678feb643">World Map</a> - <a href="http://www.mindbodygreen.com/0-7723/8-things-you-should-know-about-acroyoga.html">Things to know</a></p>
 
-<h2>#AcroyogaOttawa Instagram Feed</h2>
+<h2 id="instagram_feed_title">Instagram_feed_title</h2>
+<script>
+    document.getElementById("instagram_feed_title").innerHTML = "#" + instagram_hash_tag + " Instagram Feed";
+</script>
+
 <div id="instafeed"></div>
 </div>
-<h5>Created by Diana Lam and Greg Clarke of <a href='http://SmileyOm.com'>Smiley Om</a>.</h5>
+
+<h5 id="foot_text">footer</h5>
+<script>
+    document.getElementById("foot_text").innerHTML = "Created by <a href='http://SmileyOm.com'>Smiley Om</a>, administered by <a href='mailto:" + contact_email + "'>" + contact_name + "</a>. <a href='https://github.com/AcroyogaOttawa/AcroyogaOttawa.github.io'>Fork me</a>.";
+</script>
+
 </body>
 </html>
