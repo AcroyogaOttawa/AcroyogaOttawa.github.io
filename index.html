@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href='js/fullcalendar.css' rel='stylesheet' />
-<link href='js/fullcalendar.print.css' rel='stylesheet' media='print' />
-<script src='js/jquery.min.js'></script>
-<script src='js/jquery-ui.custom.min.js'></script>
-<script src='js/fullcalendar.min.js'></script>
-<script src='js/gcal.js'></script>
-<script src="js/instafeed.min.js"></script>
+<script src="lib/instafeed.min.js"></script>
+<link href='lib/fullcalendar.css' rel='stylesheet' />
+<link href='lib/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='lib/moment.min.js'></script>
+<script src='lib/jquery.min.js'></script>
+<script src='lib/fullcalendar.min.js'></script>
+<script src='lib/gcal.js'></script>
 <script src='config.js'></script>
 <script>
 
 	$(document).ready(function() {
 	
 		$('#calendar').fullCalendar({
+
+			googleCalendarApiKey: google_calendar_api_key,
 		
-			events: 'http://www.google.com/calendar/feeds/' + google_calendar + '/public/basic',
+			events: google_calendar,
 			
 			eventClick: function(event) {
+				// opens events in a popup window
 				window.open(event.url, 'gcalevent', 'width=700,height=600');
 				return false;
 			},
 			
 			loading: function(bool) {
-				if (bool) {
-					$('#loading').show();
-				}else{
-					$('#loading').hide();
-				}
+				$('#loading').toggle(bool);
 			}
 			
 		});
