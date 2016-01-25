@@ -1,0 +1,55 @@
+---
+
+port: 4000
+host: 0.0.0.0
+safe: false
+
+
+### site serving configuration ###
+exclude: [CNAME, README.md, .gitignore]
+permalink: / ## disables post output
+timezone: null
+lsi: false
+markdown: kramdown
+highlighter: pygments
+
+
+### content configuration ###
+title:                "Acroyoga Ottawa Event Calendar"
+tagline:              "Acrobatics with a yogic consciousness in a beautiful city"
+keywords:             "Extended mind, memex"
+description:          "Extending our minds"
+favicon:              "img/favicon.ico"
+touch_icon:           "img/favicon.png"
+contact_name:         "Greg"
+contact_email:        "greg@smileyom.com"
+google_analytics_key: "UA-47043442-2"
+lucky_orange_site_id: "38365"
+simple_form_token:    "d0e8d95018e9b517cab1e78acf098e93"
+site_url:             "http://AcroyogaOttawa.com/"
+
+
+### Google Calendar
+google_calendar_api_key: 'AIzaSyAPjGPP7lWZPN1o1eBOeQzi7TL2jl3t5Ac'
+google_calendar:         'gho.st_19b0g4d2m46ta2l2gf8olt1k6o@group.calendar.google.com'
+
+
+### Social
+facebook:            "https://www.facebook.com/groups/AcroyogaOttawa/"
+twitter:             "https://twitter.com/AcroyogaOttawa"
+pinterest:           "http://www.pinterest.com/gregology/acroyoga-ottawa/"
+instagram_hash_tag:  "AcroyogaOttawa"
+instagram_client_id: "4c0caa35855143e788ca790012daaa3b"
+
+### template colors, used site-wide via css ###
+colors:
+  black:     '#111111'
+  white:     '#f8f8f8'
+  blue:      '#49a7e9'
+  green:     '#9bcf2f'
+  purple:    '#c869bf'
+  orange:    '#fab125'
+  turquoise: '#0fbfcf'
+
+kramdown:
+  auto_ids:  false

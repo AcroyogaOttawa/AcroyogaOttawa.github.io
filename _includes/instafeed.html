@@ -1,0 +1,20 @@
+{% if site.instagram_hash_tag %}
+  <script src="lib/instafeed.min.js"></script>
+
+
+  <script type="text/javascript">
+      var feed = new Instafeed({
+          get: 'tagged',
+          tagName: '{{ site.instagram_hash_tag }}',
+          clientId: instagram_client_id,
+          limit: 30,
+          resolution: 'thumbnail',
+        template: '<a href="{{ "{{link" }}}}"><img src="{{ "{{image" }}}}" /></a>'
+      });
+      feed.run();
+  </script>
+
+  <center>
+    <div id="instafeed"></div>
+  </center>
+{% endif %}

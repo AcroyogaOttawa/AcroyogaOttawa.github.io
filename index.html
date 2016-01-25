@@ -1,155 +1,91 @@
+---
+---
 <!DOCTYPE html>
-<html>
+<html dir="ltr" lang="en">
 <head>
-<script src="lib/instafeed.min.js"></script>
-<link href='lib/fullcalendar.css' rel='stylesheet' />
-<link href='lib/fullcalendar.print.css' rel='stylesheet' media='print' />
-<script src='lib/moment.min.js'></script>
-<script src='lib/jquery.min.js'></script>
-<script src='lib/fullcalendar.min.js'></script>
-<script src='lib/gcal.js'></script>
-<script src='config.js'></script>
-<script type='text/javascript'>
-window.__wtw_lucky_site_id = 38365;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.title }}</title>
+	<meta name="keywords" content="{{ site.keywords }}">
+	<meta name="description" content="{{ site.description }}">
+  <link rel="stylesheet" href="combo.css">
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  {% if site.favicon %}<link rel="shortcut icon" href="{{ site.favicon }}" type="image/x-icon">{% endif %}
+	{% if site.touch_icon %}<link rel="apple-touch-icon" href="{{ site.touch_icon }}">{% endif %}
 
-	(function() {
-		var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
-		wa.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://cdn') + '.luckyorange.com/w.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
-	  })();
-</script>
-<script>
 
-	$(document).ready(function() {
-	
-		$('#calendar').fullCalendar({
+  <link href='lib/fullcalendar.css' rel='stylesheet' />
+  <link href='lib/fullcalendar.print.css' rel='stylesheet' media='print' />
+  <script src='lib/moment.min.js'></script>
+  <script src='lib/jquery.min.js'></script>
+  <script src='lib/fullcalendar.min.js'></script>
+  <script src='lib/gcal.js'></script>
+  <script src='apis.js'></script>
 
-			googleCalendarApiKey: google_calendar_api_key,
-		
-			events: google_calendar,
-			
-			eventClick: function(event) {
-				// opens events in a popup window
-				window.open(event.url, 'gcalevent', 'width=700,height=600');
-				return false;
-			},
-			
-			loading: function(bool) {
-				$('#loading').toggle(bool);
-			}
-			
-		});
-		
-	});
-
-</script>
-<style>
-
-	body {
-		margin-top: 40px;
-		text-align: center;
-		font-size: 14px;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		}
-		
-	#loading {
-		position: absolute;
-		top: 5px;
-		right: 5px;
-		}
-	
-	#instafeed {
-		width: 900px;
-		margin: 0 auto;
-	}
-
-	#calendar {
-		width: 900px;
-		margin: 0 auto;
-		}
-
-	#footer {
-		width: 900px ;
-		margin-left: auto ;
-		margin-right: auto ;
-		}
-
-	* {
-	    font-family: Helvetica, sans-serif;
-	  }
-
-</style>
-<script type="text/javascript">
-    var feed = new Instafeed({
-        get: 'tagged',
-        tagName: instagram_hash_tag,
-        clientId: instagram_client_id,
-        limit: 35,
-        resolution: 'thumbnail'
-    });
-    feed.run();
-</script>
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', google_analytics]);
-_gaq.push(['_trackPageview']);
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
-
-ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-</script>
-
+  <script>
+  	$(document).ready(function() {
+  		$('#calendar').fullCalendar({
+  			googleCalendarApiKey: google_calendar_api_key,
+  			events: google_calendar,
+  			eventClick: function(event) {
+  				// opens events in a popup window
+  				window.open(event.url, 'gcalevent', 'width=700,height=600');
+  				return false;
+  			},
+  			loading: function(bool) {
+  				$('#loading').toggle(bool);
+  			}
+  		});
+  	});
+  </script>
 </head>
 <body>
+  <div id="main">
 
-<h1 id="title">title</h1>
-<h2 id="tagline">tagline</h2>
-<script>
-    document.getElementById("title").innerHTML = title;
-    document.getElementById("tagline").innerHTML = tagline;
-</script>
-
-<div id='loading' style='display:none'>loading...</div>
-
-<div id='calendar'>
-	<div id="calendar_options" align="right"></div>
-</div>
-<script>
-    document.getElementById("calendar_options").innerHTML = "<a href='http://www.google.com/calendar/ical/" + google_calendar + "/public/basic.ics'>Add to your calendar</a> - <a href='http://chadnorwood.com/gcm/?gc=" + google_calendar + "'>view as map</a>";
-</script>
+    <nav><ul>
+      {% for node in site.posts reversed %}
+        {% capture id %}{{ node.id | remove:'/' | downcase }}{% endcapture %}
+        <li class="p-{{id}}"><a href="#{{id}}">{{node.title}}</a></li>
+      {% endfor %}
+    </ul></nav>
 
 
-<div id='footer'>
-<h3>Definitions</h3>
-<p><b>Jams</b>: Informal gatherings to play and practice, no formal instruction or start time. Turn up whenever you want.<br>
-<b>Classes</b>: Weekly formal instruction to develop your Acroyoga practice.<br>
-<b>Workshops</b>: A more indepth Acroyoga experience.<br>
-<b>Performances</b>: Members of our community performing to the public.</p>
+    {% for page in site.posts reversed %}
+      {% capture id %}{{ page.id | remove:'/' | downcase }}{% endcapture %}
+      <div id="{{id}}" class="section p-{{id}}">
+        {% if page.icon %}
+        <div class="subtlecircle sectiondivider imaged">
+          <img src="{{page.icon}}" alt="section icon" />
+          <h5 class="icon-title">{{ page.title }}</h5>
+        </div>
+        {% elsif page.fa-icon %}
+        <div class="subtlecircle sectiondivider faicon">
+          <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-{{ page.fa-icon }} fa-stack-1x"></i>
+          </span>
+          <h5 class="icon-title">{{ page.title }}</h5>
+        </div>
+        {% endif %}
+        <div class="container {{ page.style }}">
+          {{ page.content }}
+        </div>
+      </div>
+    {% endfor %}
 
-<h3>Social</h3>
-<p id="social_links">social links</p>
-<script>
-    document.getElementById("social_links").innerHTML = social_links;
-</script>
 
-<h3>References</h3>
-<p><a href="https://www.youtube.com/playlist?list=PLZdtKRrh2n7tmMYi6A9fkfk5Xw8SNMSHK">Yogabatics</a> - <a href="https://maps.google.com/maps/ms?ie=UTF8&oe=UTF8&msa=0&msid=214237272004176694934.0004e452a8e7678feb643">World Map</a> - <a href="http://www.mindbodygreen.com/0-7723/8-things-you-should-know-about-acroyoga.html">Things to know</a></p>
+    <div id="footer" class="section text-white">
+      <div class="container">
+        {% capture foottext %} {% include footer.md %} {% endcapture %}
+        {{ foottext | markdownify }}
+      </div>
+    </div>
+  </div>
 
-<h2 id="instagram_feed_title">Instagram_feed_title</h2>
-<script>
-    document.getElementById("instagram_feed_title").innerHTML = "#" + instagram_hash_tag + " Instagram Feed";
-</script>
-
-<div id="instafeed"></div>
-</div>
-
-<h5 id="foot_text">footer</h5>
-<script>
-    document.getElementById("foot_text").innerHTML = "Created by <a href='http://SmileyOm.com'>Smiley Om</a>, administered by <a href='mailto:" + contact_email + "'>" + contact_name + "</a>. <a href='https://github.com/AcroyogaOttawa/AcroyogaOttawa.github.io'>Fork me</a>.";
-</script>
-
+{% include analytics.html %}
+{% include luckyorange.html %}
 </body>
+
+<script src="site.js"></script>
 </html>
