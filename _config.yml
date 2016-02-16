@@ -16,10 +16,10 @@ permalink : /:year
 
 
 ### content configuration ###
-title:                "Acroyoga Ottawa Event Calendar"
+title:                "Acroyoga Ottawa"
 tagline:              "Acrobatics with a yogic consciousness in a beautiful city"
-keywords:             "Extended mind, memex"
-description:          "Extending our minds"
+keywords:             "Acroyoga, Ottawa, Yoga"
+description:          "Acroyoga events in Canada's Capital Region, Ottawa & Gatineau."
 favicon:              "img/favicon.ico"
 touch_icon:           "img/favicon.png"
 contact_name:         "Greg"
