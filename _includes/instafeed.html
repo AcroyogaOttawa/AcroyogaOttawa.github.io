@@ -1,17 +1,45 @@
 {% if site.instagram_hash_tag %}
   <script src="lib/instafeed.min.js"></script>
 
-
   <script type="text/javascript">
-      var feed = new Instafeed({
-          get: 'tagged',
-          tagName: '{{ site.instagram_hash_tag }}',
-          clientId: instagram_client_id,
-          limit: 30,
-          resolution: 'thumbnail',
-        template: '<a href="{{ "{{link" }}}}"><img src="{{ "{{image" }}}}" /></a>'
-      });
-      feed.run();
+    function countInArray(array, what) {
+      var count = 0;
+      for (var i = 0; i < array.length; i++) {
+          if (array[i] === what) {
+              count++;
+          }
+      }
+      return count;
+    }
+
+    var posted_users = ['228572704', '228572704', '228572704'];
+    var post_limit = 8;
+    var post_count = 0;
+
+    var feed = new Instafeed({
+      get: 'tagged',
+      tagName: '{{ site.instagram_hash_tag }}',
+      clientId: instagram_client_id,
+      limit: 60,
+      sortBy: 'random',
+      resolution: 'standard_resolution',
+      filter: function(image) {
+        if (image.type == 'image') {
+          image.template = '<img src="' + image.images.standard_resolution.url + '" alt="' + image.caption.text + '" />';
+        } else {
+          image.template = '<video style="width:100%; display:inline-block; vertical-align: top;" controls loop><source src="' + image.videos.standard_resolution.url + '" type="video/mp4" alt="' + image.caption.text + '" /></video>';
+        };
+        posted_users.push(image.user.id);
+        if ((countInArray(posted_users, image.user.id) <= 4) && (post_count < post_limit)) {
+          post_count = post_count + 1;
+          return true;
+        } else {
+          return false;
+        }
+      },
+      template: '<div style="width:50%; display:inline-block; vertical-align: top;">{{ "{{model.template" }}}}</div>'
+    });
+    feed.run();
   </script>
 
   <center>
