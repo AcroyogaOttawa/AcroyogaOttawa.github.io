@@ -13,6 +13,7 @@
     }
 
     var posted_users = ['228572704', '228572704', '228572704'];
+    var max_posts_per_user = 4;
     var post_limit = 8;
     var post_count = 0;
 
@@ -30,7 +31,7 @@
           image.template = '<video style="width:100%; display:inline-block; vertical-align: top;" controls loop><source src="' + image.videos.standard_resolution.url + '" type="video/mp4" alt="' + image.caption.text + '" /></video>';
         };
         posted_users.push(image.user.id);
-        if ((countInArray(posted_users, image.user.id) <= 4) && (post_count < post_limit)) {
+        if ((countInArray(posted_users, image.user.id) <= max_posts_per_user) && (post_count < post_limit)) {
           post_count = post_count + 1;
           return true;
         } else {
