@@ -12,7 +12,7 @@
   <meta name="msapplication-navbutton-color" content="#4285f4">
   <!-- iOS Safari -->
   <meta name="apple-mobile-web-app-status-bar-style" content="#4285f4">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ site.title }}</title>
 	<meta name="keywords" content="{{ site.keywords }}">
@@ -35,6 +35,7 @@
   <script>
   	$(document).ready(function() {
   		$('#calendar').fullCalendar({
+        contentHeight: "auto",
   			googleCalendarApiKey: google_calendar_api_key,
   			events: google_calendar,
   			eventClick: function(event) {
