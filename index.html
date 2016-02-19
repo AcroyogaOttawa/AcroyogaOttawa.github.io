@@ -38,6 +38,11 @@
         contentHeight: "auto",
   			googleCalendarApiKey: google_calendar_api_key,
   			events: google_calendar,
+        header: {
+            left: '',
+            center: 'prev title next',
+            right: ''
+        },
   			eventClick: function(event) {
   				// opens events in a popup window
   				window.open(event.url, 'gcalevent', 'width=700,height=600');
